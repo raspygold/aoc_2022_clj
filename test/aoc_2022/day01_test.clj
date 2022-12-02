@@ -1,4 +1,5 @@
 (ns aoc-2022.day01-test
+  #_{:clj-kondo/ignore [:refer-all]}
   (:require [clojure.test :refer :all]
             [aoc-2022.day01 :refer :all]))
 

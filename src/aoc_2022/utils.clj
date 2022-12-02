@@ -1,6 +1,9 @@
 (ns aoc-2022.utils
   (:require [clojure.string :as str]))
 
+(defn parse-int [v] (if (char? v)
+                      (Character/digit ^char v 10)
+                      (Integer/parseInt v)))
 
 (defn numeric? [s]
   (if-let [s (seq s)]
@@ -9,10 +12,6 @@
           s (if (= (first s) \.) (next s) s)
           s (drop-while #(Character/isDigit %) s)]
       (empty? s))))
-
-(defn parse-int [v] (if (char? v)
-                      (Character/digit ^char v 10)
-                      (Integer/parseInt v)))
 
 (defn parse-binary [s] (Integer/parseInt s 2))
 (defn binary-to-decimal [s] (Long/parseLong s 2))
