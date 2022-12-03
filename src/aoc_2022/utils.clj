@@ -32,6 +32,9 @@
 
 (defn char->int [c] (- (int c) 48))
 
+(defn char-range [start end]
+  (map char (range (int start) (inc (int end)))))
+
 (defn update-values
   "Thank you to Jay Fields' post for this awesome way to apply a function
   to every element of a map.
