@@ -31,7 +31,7 @@
        (map part1-find-common-items)
        (map prioritize)
        (flatten)
-       (reduce + 0 )))
+       (reduce + 0)))
 
 (defn part2-find-common-items [rucksacks]
   (let [[a b c] rucksacks

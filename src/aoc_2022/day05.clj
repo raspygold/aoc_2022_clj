@@ -11,8 +11,8 @@
         updated-to (concat (get stacks to) (reverse crates-to-move))
         updated-from (drop-last count (get stacks from))]
     (reduce
-      #(update-in %1 [(first %2)] (fn [_] (last %2)))
-      stacks {to updated-to from updated-from})))
+     #(update-in %1 [(first %2)] (fn [_] (last %2)))
+     stacks {to updated-to from updated-from})))
 
 (defn execute-bulk-stack-move [stacks, [count, from, to]]
   (let [count (Long/valueOf count)
@@ -21,7 +21,7 @@
         updated-from (drop-last count (get stacks from))]
     (reduce
      #(update-in %1 [(first %2)] (fn [_] (last %2)))
-      stacks {to updated-to from updated-from})))
+     stacks {to updated-to from updated-from})))
 
 (defn part1 [input initial-stacks]
   (->> (process-input input)

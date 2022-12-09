@@ -8,10 +8,10 @@
 
 (deftest part1-test
   (are [expected input] (= expected (part1 input))
-                        157 test-input
-                        7742 puzzle-input))
+    157 test-input
+    7742 puzzle-input))
 
 (deftest part2-test
   (are [expected input] (= expected (part2 input))
-                        70 test-input
-                        2276 puzzle-input))
+    70 test-input
+    2276 puzzle-input))

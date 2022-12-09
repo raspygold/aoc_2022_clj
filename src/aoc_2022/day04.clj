@@ -15,7 +15,7 @@
   (let [[a b] (str/split sections #",")
         a (section-to-set a)
         b (section-to-set b)]
-    (or 
+    (or
      (subset? a b)
      (superset? a b))))
 
@@ -24,7 +24,7 @@
         a (section-to-set a)
         b (section-to-set b)]
     (> (count (intersection a b)) 0)))
-  
+
 
 (defn part1 [input]
   (->> (process-input input)

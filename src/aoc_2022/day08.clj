@@ -3,7 +3,6 @@
             [aoc-2022.utils :refer [parse-int]]
             [clojure.math.combinatorics :as combo]))
 
-
 (defn shorter-than? [forest tree [y x]]
   (< (aget (aget forest y) x) tree))
 
@@ -30,7 +29,7 @@
                        (take-while
                         (partial shorter-than? forest tree) direction))]
     (if (< shorter-trees (count direction))
-      (+ shorter-trees 1) 
+      (+ shorter-trees 1)
       shorter-trees)))
 
 (defn calc_scenic_score [forest, y, x tree]
@@ -39,7 +38,7 @@
         ys (filter #(not= y %) (range 0 forest-height))
         xs (filter #(not= x %) (range 0 forest-width))
         [north-ys south-ys] (if (= 0 y) [[] ys] (partition-by #(< y %) ys))
-        [west-xs east-xs] (if (= 0 x) [[] xs ](partition-by #(< x %) xs))
+        [west-xs east-xs] (if (= 0 x) [[] xs] (partition-by #(< x %) xs))
         north (combo/cartesian-product (reverse north-ys) [x])
         east (combo/cartesian-product [y] east-xs)
         south (combo/cartesian-product south-ys [x])
@@ -47,15 +46,14 @@
     (reduce * 1 [(count-visible forest tree north)
                  (count-visible forest tree east)
                  (count-visible forest tree south)
-                 (count-visible forest tree west)])
-    ))
+                 (count-visible forest tree west)])))
 
 (defn process-input [input]
   (let [tree-rows (str/split-lines input)
-        trees-2d-list (map 
-               (fn [row] 
-                 (map parse-int (vec row)))
-               tree-rows)
+        trees-2d-list (map
+                       (fn [row]
+                         (map parse-int (vec row)))
+                       tree-rows)
         forest (to-array-2d trees-2d-list)]
     forest))
 
@@ -70,8 +68,7 @@
 (defn part2 [input]
   (let [forest (process-input input)
         tree-scenic-scores (map-indexed
-                       (fn [yidx row]
-                         (map-indexed (partial calc_scenic_score forest yidx) row))
-                       forest)]
-    (apply max (map #(apply max %) tree-scenic-scores))
-    ))
+                            (fn [yidx row]
+                              (map-indexed (partial calc_scenic_score forest yidx) row))
+                            forest)]
+    (apply max (map #(apply max %) tree-scenic-scores))))

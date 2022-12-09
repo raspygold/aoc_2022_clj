@@ -5,7 +5,7 @@
 (defn parse-elf-calories [input]
   (->> (str/split-lines input)
        (partition-by #(= "" %))
-       (remove (partial = [""] ))
+       (remove (partial = [""]))
        (map #(map parse-int %))
        (map #(reduce + %))))
 
